@@ -1,5 +1,6 @@
 body {
     max-width:950 px;
+    text-align:center;
 }
 .home-grid{
     display: grid;
