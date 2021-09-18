@@ -23,19 +23,6 @@ header {
     margin: auto;
     text-align: center;
 }
-
-#pic{
-    position: relative;
-}
-#pic img {
-    width: 20%;
-    position: absolute;
-    top: -65px;
-    right: 10px;
-}
-
-
-
 main {
     text-align: left;
 }
@@ -55,11 +42,6 @@ section {
 
 }
 h2 {
-    /*border-bottom: 1px solid black;*/
-    /*max-width: 580px;*/
-    /*position: relative;*/
-    /*left: 10px;
-    padding-bottom: 6px;*/
     border-bottom: 1px solid black;
     
 }
