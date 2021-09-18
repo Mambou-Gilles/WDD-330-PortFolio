@@ -1,6 +1,7 @@
 body {
-    max-width:950 px;
+    max-width:750 px;
     text-align:center;
+    background-color: #FFFF99;
 }
 .home-grid{
     display: grid;
