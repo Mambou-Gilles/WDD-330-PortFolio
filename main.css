@@ -2,6 +2,7 @@ body {
     max-width:750px;
     margin: 50px auto;
     text-align:center;
+    border: 5px solid black;
     background-color: #FFFF99;
 }
 .home-grid{
