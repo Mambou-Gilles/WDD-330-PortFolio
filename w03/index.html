@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wdd 330: Week 01 | Portfolio Home Page</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+  
+    <header>
+        <h1 id="header-title">Elie Gilles Mambou</h1>
+    </header>
+    
+    <main>
+        <h2>WDD 330: Portfolio Week 3</h2><br>
+        
+        <ul>
+            <li><a href="#note"> My Notes</a></li>
+            <li><a href="#quiz"> Ninja Quiz</a></li>
+            <li><a href="#question">Questions</a></li>
+        </ul>
+         
+        <h2 id="note">My Notes:</h2>
+        
+      <h3> What is an Object </h3>
+   <p>An object in JavaScript is a self-contained set of related values and functions. 
+     They act as a collection of named properties that map to any JavaScript value such as strings, numbers, booleans, arrays, and functions. 
+     If a property’s value is a function, it is known as a method.</p>
+      
+      <h3>Object Literals:</h3>
+<p>An object literal is an object that is created directly in the language by wrapping all its properties and methods in curly braces { }<br>
+An object literal is created by simply enter a pair of curly braces.
+  example: <strong>const name = {};</strong>
+
+      <h3>How to check if Properties or Methods Exist?</h3>
+      <p>we can use the "in" operator, "!== undefined" or "hasOwnProperty() method:</p>
+
+      <h3>The Math Object:</h3>
+    <p>The Math object is a built-in object that has several properties representing mathematical constants, 
+      as well as methods that carry out a number of common mathematical operations.<br>
+
+  All the properties and methods of the Math object are immutable and unable to be changed.
+  The Math object also has several methods to carry out a variety of useful mathematical operations.</p>
+
+      <h3> Absolute Values:</h3> 
+      <p>The <strong>Math.abs()</strong> method returns the absolute value of a number. So if the number is positive, 
+        it will remain the same, and if it’s negative, it will become positive</p>
+      
+      <h3>Rounding Methods:</h3>
+      <ul>
+        <li>The <strong>Math.ceil()</strong> method will round a number up to the next integer, or remain the same if it is already an integer</li>
+        <li>The <strong>Math.floor()</strong> method will round a number down to the next integer, or remain the same if it is already an integer</li>
+        <li>The <strong>Math.round()</strong> method will round a number to the nearest integer</li>
+      </ul>
+
+        <h3>Powers and Roots:</h3>
+      <ul>
+        <li>The <strong>Math.exp()</strong> method will raise a number to the power of Euler’s constant</li>
+        <li>The <strong>Math.pow()</strong> method will raise any number (1st argument) to the power of another number (2nd argument)</li>
+        <li>The <strong>Math.sqrt()</strong> method returns the positive square root of a number</li>
+      </ul>
+
+      <h3>Logarithmic Methods:</h3>
+    <p>The "Math.log()" method returns the natural logarithm of a number</p>
+
+      <h3>Maximum & Minimum Methods:</h3>
+        <ul>
+          <li>The <strong>Math.max()</strong> method returns the maximum number from its arguments</li>
+          <li>The <strong>Math.min()</strong> method unsurprisingly returns the minimum number from the given arguments</li>
+      </ul>
+
+      <h3>Trigonometric Functions:</h3>
+        <ul>
+          <li>The <strong>Math.sin()</strong> returns the sine of an angle</li>
+          <li>The <strong>Math.cos()</trong> returns the cosine of an angle </li>
+          <li>The <strong>Math.tan()</strong> returns the tangent of an angle</li>
+          <li>The <strong>Math.asin()</strong> returns the arcsine of a number. The result is an angle</li>
+      </ul>
+
+      <h3>Map, Filter and Reduce:</h3>
+      <h3>Map: </h3>
+      <p>The <strong>map()</strong> method is used for creating a new array from an existing one, applying a function to each one of the elements of the first array.</p>
+
+      <h3>Filter:</h3>
+      <p>The <strong>filter()</strong> method takes each element in an array and it applies a conditional statement against it. 
+        If this conditional returns true, the element gets pushed to the output array. 
+        If the condition returns false, the element does not get pushed to the output array.</p>
+
+      <h3>Reduce:</h3>
+      <p>The <strong>reduce()</strong> method reduces an array of values down to just one value.
+        To get the output value, it runs a reducer function on each element of the array.</p>
+
+
+
+
+.
+
+      
+    
+    <h3 id="quiz">Ninja Quiz Practice</h3>
+    <p> In the link below you will go to our practice link </p>
+       <a href="quiz/">Quiz ninja start</a>
+
+            <h3 id="question">Question:</h3>
+            <p> Which of the two ways is best to use when writing function between a Function declaration and function expression?<br>
+                Can callback functions have arguments?<br>
+                How many type of callback functions are there?<br>
+                What is really the use of a WeakSet object in JavaScript ?</p>
+     
+    </main>
+    <footer>
+          &copy; <span id="year"></span> <!-- <script>document.write(new Date().getFullyear());</script> -->  | Elie Gilles Mambou | Utah | 
+         <a href="https://www.byui.edu/online" id="footer-link">BYU Online Learning</a>
+         <p id="update">       </p>
+    </footer>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
