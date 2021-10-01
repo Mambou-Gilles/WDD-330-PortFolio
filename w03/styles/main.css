@@ -30,12 +30,12 @@ main {
 }
 
 
-section {
+/*section {
     display: flex;
     flex-direction: column;
     align-items: left;
     padding: 3 0 10 0;
-}
+}*/
 
 #header-title {
     background-color: SaddleBrown;
