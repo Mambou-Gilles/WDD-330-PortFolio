@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap');
 body {
     
     background-color: #FFFF99;
     max-width: 950px;
-    margin: 0 50px;
+    margin: 50px auto;
+    padding-top: 10px;
 }
 h1 { background-color:#90EE90;
     padding: 50px;
