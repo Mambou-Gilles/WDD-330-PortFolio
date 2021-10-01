@@ -1,10 +1,11 @@
 /* HTML Selectors */
+@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap');
 article {
     margin: 10px;
 }
 
 body {
-    font-family: 'Tahoma', sans-serif;
+    font-family: 'Scheherazade New', serif;
     max-width: 950px;
     margin: 50px auto;
     padding-top: 10px;
