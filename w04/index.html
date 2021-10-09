@@ -25,17 +25,117 @@
         </ul>
          
         <h2 id="note">My Notes:</h2>
-        
+        <p>Forms are a very common method of interacting with a web page<br>
+    ways of accessing form elements:
+    <ul>
+        <li>const form = document.forms[0];  # using index notation</li>
+        <li>const form = document.getElementsByTagname('form')[0] #using Tag name element</li>
+        <li>const form = document.forms.search; # using name attribute </li>
+        <li>const form = document.forms['search']; #square bracket notation</li>
+        </ul>
+
+        <h3>Form Properties and Methods:</h3>
+        <p> The <strong>form.submit()</strong>method will submit the form automatically<br>
+        Example: <button type='submit'>Submit</button><br>
+        <input type='submit' value='Submit'>,br>
+      <input type='image' src='button.png'></p>
+
+        <p>The <strong>form.reset()</strong> method will reset all the form controls back to their initial values specified in the HTML.<br>
+        Example:  <button type='reset'>Reset</button></p>
+
+        <p>The <strong>form.action</strong> property can be used to set the action attribute of a form, so it’s sent to a different URL to be processed on the server.<br>
+        Example:  form.action = '/an/other.url'</p>
+
+        <h3>Form Events:</h3>
+        <p>The <strong>focus</strong> event occurs when an element is focused on.<br>
+            Example: input.addEventListener('focus', () => alert('focused'), false);</p>
+
+        <p>The <strong>blur</strong> event occurs when the user moves the focus away from the form element.<br>
+            Example: input.addEventListener('blur', () => alert('blurredd'), false);  </p>
+
+        <p>The <strong>change</strong> event occurs when the user moves the focus away from the form element after changing it.<br>
+            Example: input.addEventListener('change', () => alert('changed'), false);</p>
+
+        <p>The most important form event is the <strong>submit</strong> event, occurring when the form is submitted. <br>
+            Example: const form = document.forms['search'];<br>
+                    form.addEventListener ('submit', search, false);<br>
+                    function search(event) {<br>
+                        alert('Form Submitted');<br>
+                        event.preventDefault();<br>
+      } <br>
+            In this instance we stopped the form from being submitted to the URL by using the preventDefault() method</p>
+
+        <h3>Form Controls:</h3>
+  <p>Some common types of form control are:<br>
       
+      <ul>
+          <li><strong><input></strong>fields, including 'text', 'passwords', 'checkboxes', 'radio buttons', and 'file uploads' types<br>
+         Example: <input type='text'> which is used for entering a short piece of text, such as a username</br><br>
+        <input type='password'> which is  used to enter passwords or secret information<br><br>
+        <input type='checkbox'> which is used to select different options that can be checked (true) or left unchecked (false)</li>
+
+          <li><strong><select></strong>menus for drop-down lists of options</li>
+
+          <li><strong><textarea></strong>elements for longer text entry</li>
+
+          <li><strong><button></strong>elements for submitting and resetting forms</li>
+
+
+              <h3>Object-Oriented Programming in JavaScript:</h3>
+  <p>Object-oriented programming (OOP for short) is a style of programming that involves separating the code into objects that have properties and methods. 
+      It has the benefit of keeping related pieces of code encapsulated in objects that maintain state throughout the life of the program. 
+      The objects can also be reused or easily modified, as required.</p>
+
+<p>JavaScript contains a number of built-in constructor functions such as Object, Array, and Function that can be used to create objects, arrays and functions instead of literals.<br>
+Example:   <br>
+        const literalObject = {};<br>
+         returns << {}<br><br>
+
+      constructedObject = new Object();<br>
+     returns << {}<br><br>
+
+      literalObject instanceof Object;<br>
+    return << true</p>
+
+<p>All objects have a constructor property that returns the constructor function that created it.<br>
+  Example: <br>
+        const literalObject = {};<br>
+        returns << {}<br><br>
+        literalObject.constructor<br>
+        returns << [Function: Object]</p>
+              
+              <h3>What Should the Prototype Be Used For?</h3>
+<p>The prototype can be used to add any new properties and methods after the class has been declared. 
+    It should be used to define any properties that will remain the same for every instance of the class. </p>
+
+    <h3>Getting and Setting Property Descriptors</h3>
+              <p>The <strong>Object()</strong>constructor function has a number of methods for getting and defining property descriptors. 
+                  We can see these values using the <strong>Object.getOwnPropertyDescriptor()</strong>method
+
+              <p>Every time a new object is created using the<strong>Object.create()</strong>method, 
+                  the new object inherits all the properties and methods from the parent object, which becomes the new object’s prototype</p>
+
+              <h3>Modular JavaScript:</h3>
+<p>A module is a self-contained piece of code that provides functions and methods that can then be used in other files and by other modules. 
+    This helps to keep code organized in separate, reusable files, which improves code maintainability.</p>
+
+There are a few important points about modules that are worth keeping in mind:
+
+  <ul>
+      <li>All code in modules is always in strict mode without the need for 'use strict' and there is no way to opt-out of this.</li>
+      <li>A module has its own global scope, so any variables created in the top level of a module can only be accessed within that module.</li>
+      <li>The value of "this" in the top level of a module is undefined, rather than the global object.</li>
+      <li>You can't use HTML-style comments in modules (although this isn't very common in any JavaScript program these days).</li>
+
       
     
-    <h3 id="quiz">Ninja Quiz Practice</h3>
+    <h2 id="quiz">Ninja Quiz Practice</h2>
     <p> In the link below you will go to our practice link </p>
        <a href="quiz/">Quiz ninja start</a>
 
-            <h3 id="question">Question:</h3>
-            <p> When using the sort method, why do we use 1 to return true and -1 to return false instead of 0?<br>
-                When exactly are we to use the map() and filter() method</p>
+            <h2 id="question">Question:</h2>
+            <p>What is function overloading in JavaScript?<br>
+               Should static method only be used when working with classes?</p>
      
     </main>
     <footer>
