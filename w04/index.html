@@ -36,49 +36,49 @@
 
         <h3>Form Properties and Methods:</h3>
         <p> The <strong>form.submit()</strong>method will submit the form automatically<br>
-        Example: &ltbutton type='submit'&gtSubmit&lt/button&gt<br>
-        &ltinput type='submit' value='Submit'&gt<br>
-      &ltinput type='image' src='button.png'&gt</p>
+        &quot;&lt;button type='submit'&gt;Submit&lt;/button&gt;<br>
+        &lt;input type='submit' value='Submit'&gt;<br>
+      &lt;input type='image' src='button.png'&gt;&quot;</p>
 
         <p>The <strong>form.reset()</strong> method will reset all the form controls back to their initial values specified in the HTML.<br>
-        Example:  &ltbutton type='reset'&gtReset&lt/button&gt</p>
+        Example:  &lt;button type='reset'&gt;Reset&lt;/button&gt;</p>
 
         <p>The <strong>form.action</strong> property can be used to set the action attribute of a form, so it’s sent to a different URL to be processed on the server.<br>
         Example:  form.action = '/an/other.url'</p>
 
         <h3>Form Events:</h3>
         <p>The <strong>focus</strong> event occurs when an element is focused on.<br>
-            Example: input.addEventListener('focus', () => alert('focused'), false);</p>
+            &quot; input.addEventListener('focus', () => alert('focused'), false)&quot;<br><br>
 
-        <p>The <strong>blur</strong> event occurs when the user moves the focus away from the form element.<br>
-            Example: input.addEventListener('blur', () => alert('blurredd'), false);  </p>
+        The <strong>blur</strong> event occurs when the user moves the focus away from the form element.<br>
+            &quot;input.addEventListener('blur', () => alert('blurredd'), false);&quot; <br><br>
 
-        <p>The <strong>change</strong> event occurs when the user moves the focus away from the form element after changing it.<br>
-            Example: input.addEventListener('change', () => alert('changed'), false);</p>
+        The <strong>change</strong> event occurs when the user moves the focus away from the form element after changing it.<br>
+            &quot;input.addEventListener('change', () => alert('changed'), false);&quot;</p>
 
         <p>The most important form event is the <strong>submit</strong> event, occurring when the form is submitted. <br>
-            Example: const form = document.forms['search'];<br>
+            &quot; const form = document.forms['search'];<br>
                     form.addEventListener ('submit', search, false);<br>
                     function search(event) {<br>
                         alert('Form Submitted');<br>
-                        event.preventDefault();<br>
+                        event.preventDefault();&quot;<br>
       } <br>
-            In this instance we stopped the form from being submitted to the URL by using the preventDefault() method</p>
+            In the example above we stopped the form from being submitted to the URL by using the preventDefault() method</p>
 
         <h3>Form Controls:</h3>
   <p>Some common types of form control are:<br>
       
       <ul>
-          <li><strong>&ltinput&gt</strong>fields, including 'text', 'passwords', 'checkboxes', 'radio buttons', and 'file uploads' types<br>
-         Example: &ltinput type='text'&gt which is used for entering a short piece of text, such as a username</br><br>
-        &ltinput type='password'&gt which is  used to enter passwords or secret information<br><br>
-        &ltinput type='checkbox'&gt which is used to select different options that can be checked (true) or left unchecked (false)</li>
+          <li><strong>&lt;input&gt;</strong>fields, including 'text', 'passwords', 'checkboxes', 'radio buttons', and 'file uploads' types<br>
+        &quot;&lt;input type='text'&gt; which is used for entering a short piece of text, such as a username&quot;<br>
+        &quot;&lt;input type='password'&gt; which is  used to enter passwords or secret information&quot;<br>
+        &quot;&lt;input type='checkbox'&gt; which is used to select different options that can be checked (true) or left unchecked (false)&quot;</li>
 
-          <li><strong>&ltselect&gt</strong>menus for drop-down lists of options</li>
+          <li><strong>&lt;select&gt;</strong>menus for drop-down lists of options</li>
 
-          <li><strong>&lttextarea&gt</strong>elements for longer text entry</li>
+          <li><strong>&lt;textarea&gt;</strong>elements for longer text entry</li>
 
-          <li><strong>&ltbutton&gt</strong>elements for submitting and resetting forms</li>
+          <li><strong>&l;tbutton&gt;</strong>elements for submitting and resetting forms</li>
 
 
               <h3>Object-Oriented Programming in JavaScript:</h3>
