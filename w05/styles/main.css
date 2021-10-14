@@ -44,9 +44,15 @@ main {
 
 }
 #main-h1 {
-    border-bottom: 1px solid black;
-    
+    border-bottom: 1px solid black;  
 }
+pre {
+  border-radius: 2px;
+  border: 1px  black;
+  /*margin-right: 1200px;*/
+  background-color: lightGray;
+}
+
 #update {
     color: yellow;
     font-size: small;
