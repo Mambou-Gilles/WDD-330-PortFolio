@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wdd 330: Week 04 | Portfolio Home Page</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+  
+    <header>
+        <h1 id="header-title">Elie Gilles Mambou</h1>
+    </header>
+    
+    <main>
+        <h2 id="main-h1">WDD 330: Portfolio Week 4</h2><br>
+        
+        <ul>
+            <li><a href="#note"> My Notes</a></li>
+            <li><a href="#quiz"> Ninja Quiz</a></li>
+            <li><a href="#question">Questions</a></li>
+        </ul>
+         
+        <h2 id="note">My Notes: Chapter 10: Testing and Debugging</h2>
+        
+
+<h3>Errors, Exceptions, and Warnings<h3>
+
+one of the following causes errors:
+<ul>
+ <li>System error ― there’s a problem with the system or external devices with which the program is interacting.</li>
+ <li>Programmer error ― the program contains incorrect syntax or faulty logic; it could even be as simple as a typo.</li>
+  <li>User error ― the user has entered data incorrectly, which the program is unable to handle.</li>
+</ul>
+<p>As programmers, we should be aware of errors that have little influence over how external systems work. It is our responsibility, so we must ensure they are minimized as much as possible and fixed promptly. We also should try to limit user errors by predicting any possible interactions that may throw an error, and ensure they are dealt with in a way that doesn’t negatively affect the user experience.</p>
+
+<h3>Exceptions</h3>
+<p>An exception is an error that produces a return value that can then be used by the program to deal with the error. For example, trying to call a method that is nonexistent will result in a reference error that raises an exception.>/p>
+  <pre>unicorn();
+  &lt;&lt; ReferenceError: unicorn is not defined</pre>
+An exception will also produce as <stron>tack trace</strong>. This is a sequence of functions or method calls that lead to the point where the error occurred. The example below shows how a stack trace can help you find where an error originates from:</p>
+ <pre> 
+function three(){ unicorn(); }
+function two(){ three(); }
+function one(){ two(); }
+one();
+
+&lt;&lt; index.html:13 Uncaught ReferenceError: unicorn is not defined
+  at three (index.html:13)
+  at two (index.html:17)
+  at one (index.html:21)
+  at index.html:24`
+</pre>
+  <h3>Warnings</h3>
+<p>A warning can occur if there’s an error in the code that isn't enough to cause the program to crash. This means the program will continue to run after a warning. This might sound good, but it can be problematic, since the issue that produced the warning may cause the program to continue running incorrectly.</p>
+<pre>
+pi = 3.142;
+&lt;&lt; JavaScript Warning: assignment to an undeclared variable
+</pre>
+<strong>Warnings and exceptions are presented differently in various environments. Some browsers will show a small icon in the corner of the browser window to indicate that an exception or warning has occurred. Others require the console to be open to see any warnings or exceptions.</strong>
+
+<h3>The Importance of Testing and Debugging</h3>
+<p><strong>One should ensure that the code they write fails loudly in development so any errors can be identified and fixed quickly. In production, a programmer should try to make the code fail gracefully (although not completely silently ― we still need to know there’s an error), so the user experience is not affected, if possible. This is achieved by making sure exceptions are caught and dealt with, and code is tested rigorously.</strong></p>
+
+<h3>Strict Mode</h3>
+<p>One method used to produce more exceptions and warnings and prohibits the use of some deprecated features is called <strong><em>Strict Mode</em></strong>.<br>
+Not using strict mode is often referred to as 'sloppy mode' as it’s forgiving of sloppy programming practices. Strict mode encourages a better quality of JavaScript to be written that befits a ninja programmer, so its use is recommended.<br>
+One needs to simply enter the following string line in a javascript file to enter strict mode:</p>
+<pre> 'use strict';</pre>
+<p>This will be picked up by any JavaScript engine that uses strict mode. If the engine does not support strict mode, this string will simply be ignored.</p>
+<pre>
+//By assigning a value to a variable that is undeclared in strict mode, we get an exception, instead of a warning
+
+ 'use strict';
+
+e = 2.718;
+&lt;&lt; ReferenceError: e is not defined // <--
+</pre>
+
+<pre>
+strict mode on a per-function basis by adding the line inside a function. Strict mode will then only be applied to anything inside that function:
+
+function strictly(){
+'use strict';       // <--
+// function code goes here
+</pre>
+
+<pre>
+the recommended way to invoke strict mode is to place all your code into a self-invoking function like so:
+
+(function() {
+'use strict';       // <--
+
+// All your code would go inside this function
+
+}());
+</pre>
+
+<h3>Feature Detection</h3>
+<p>The recommended way to determine browser support for a feature is to use feature detection which is done by using an <strong>if statement</strong> to check whether an object or method exists before trying to actually call the method.</p>
+<pre>
+In this example below, we want to use the shiny newholoDeckAPI that doesn't actually exist
+
+if (window.holoDeck) {
+virtualReality.activate();
+}
+</pre>
+<h3> Debugging in the Browser</h3>
+<p> Debugging is the process of finding and fixing errors within a script. This also allows tracing the code step by step to see what exactly is going on.<br>
+It will be good to create what are known as breakpoints, which halt the progress of the code and allow us to view the value of different variables at that point in the program.</p>
+<ul>
+<li><strong>The Trusty Alert</strong> which is the most basic form of debugging that allows one to use the <strong>alert()</strong> method to show a dialog at certain points in the code.</li>
+<li><strong>Using the Console</strong>:<ul>
+<li>The<strong>console.log()</strong> method that can be used to log the value of variables at different stages of the program.</li>
+<li>The <strong>console.trace()</strong>method will log an interactive stack trace in the console. This will show the functions that were called in the lead up to an exception occurring while the code is running</li></li></ul>
+<li><strong>Debugging Tools</strong> which works by using the <strong>debugger</strong> command. For example:
+<pre>
+function hello(name) {
+let phrase = `Hello, ${name}!`;
+
+debugger; // <-- the debugger stops here
+
+say(phrase);
+}
+</pre>
+</li>
+
+</ul>
+<h3> Error Objects</h3>
+<p>Anerrorobject can be created by the host environment when an exception occurs, or it can be created in the code using a constructor function, like so:</p>
+<pre>
+const error = new Error();
+//This constructor function takes a parameter that’s used as the error message:
+const error = new Error('Oops, something went wrong');
+</pre>
+<p> The seven other error objects used for specific errors:</p>
+<ul>
+<li><strong>Eval Error</strong> is not used in the current ECMAScript specification and only retained for backward compatibility. It was used to identify errors when using the global eval()function.</li>
+
+<li><strong>RangeError</strong> is thrown when a number is outside an allowable range of values.</li>
+
+<li><strong>Reference Error</strong> is thrown when a reference is made to an item that doesn’t exist. For example, calling a function that hasn't been defined.</li>
+
+<li><strong>Syntax Error </strong> is thrown when there’s an error in the code’s syntax.</li>
+
+<li><strong>Type Error </strong> is thrown when there’s an error in the type of value used; for example, a string is used when a number is expected.</li>
+
+<li><strong>URI Error </strong>is thrown when there’s a problem encoding or decoding the URI.</li>
+
+<li> <strong>Internal Error</strong> is a non-standard error that is thrown when an error occurs in the JavaScript engine. A common cause of this too much recursion.</li>
+</ul>
+<pre>
+//These error objects can also be used as constructors to create custom error objects:
+const error = new TypeError('You need to use numbers in this function');
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+    <h2 id="quiz">Ninja Quiz Practice</h2>
+    <p> In the link below you will go to our practice link </p>
+       <a href="quiz/">Quiz ninja start</a>
+
+            <h2 id="question">Question:</h2>
+            <p>What is function overloading in JavaScript?<br>
+               Should static method only be used when working with classes?</p>
+     
+    </main>
+    <footer>
+          &copy; <span id="year"></span> <!-- <script>document.write(new Date().getFullyear());</script> -->  | Elie Gilles Mambou | Utah | 
+         <a href="https://www.byui.edu/online" id="footer-link">BYU Online Learning</a>
+         <p id="update">       </p>
+    </footer>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
+© 2021 GitHub, Inc.
+Terms
+Privacy
