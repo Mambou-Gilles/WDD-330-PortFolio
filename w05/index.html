@@ -29,19 +29,24 @@
 
 <h3>Errors, Exceptions, and Warnings<h3>
 
-one of the following causes errors:
+    <p>one of the following causes errors:</p>
 <ul>
  <li>System error ― there’s a problem with the system or external devices with which the program is interacting.</li>
  <li>Programmer error ― the program contains incorrect syntax or faulty logic; it could even be as simple as a typo.</li>
   <li>User error ― the user has entered data incorrectly, which the program is unable to handle.</li>
 </ul>
-<p>As programmers, we should be aware of errors that have little influence over how external systems work. It is our responsibility, so we must ensure they are minimized as much as possible and fixed promptly. We also should try to limit user errors by predicting any possible interactions that may throw an error, and ensure they are dealt with in a way that doesn’t negatively affect the user experience.</p>
+<p>As programmers, we should be aware of errors that have little influence over how external systems work. 
+    It is our responsibility, so we must ensure they are minimized as much as possible and fixed promptly. 
+    We also should try to limit user errors by predicting any possible interactions that may throw an error, 
+    and ensure they are dealt with in a way that doesn’t negatively affect the user experience.</p>
 
 <h3>Exceptions</h3>
-<p>An exception is an error that produces a return value that can then be used by the program to deal with the error. For example, trying to call a method that is nonexistent will result in a reference error that raises an exception.>/p>
+<p>An exception is an error that produces a return value that can then be used by the program to deal with the error. 
+    For example, trying to call a method that is nonexistent will result in a reference error that raises an exception.</p>
   <pre>unicorn();
   &lt;&lt; ReferenceError: unicorn is not defined</pre>
-An exception will also produce as <stron>tack trace</strong>. This is a sequence of functions or method calls that lead to the point where the error occurred. The example below shows how a stack trace can help you find where an error originates from:</p>
+<p>An exception will also produce as <stron>tack trace</strong>. This is a sequence of functions or method calls that lead to the point where the error occurred. 
+    The example below shows how a stack trace can help you find where an error originates from:</p>
  <pre> 
 function three(){ unicorn(); }
 function two(){ three(); }
@@ -55,42 +60,45 @@ one();
   at index.html:24`
 </pre>
   <h3>Warnings</h3>
-<p>A warning can occur if there’s an error in the code that isn't enough to cause the program to crash. This means the program will continue to run after a warning. This might sound good, but it can be problematic, since the issue that produced the warning may cause the program to continue running incorrectly.</p>
+<p>A warning can occur if there’s an error in the code that isn't enough to cause the program to crash. 
+    This means the program will continue to run after a warning. This might sound good, but it can be problematic, 
+    since the issue that produced the warning may cause the program to continue running incorrectly.</p>
 <pre>
 pi = 3.142;
 &lt;&lt; JavaScript Warning: assignment to an undeclared variable
 </pre>
-<strong>Warnings and exceptions are presented differently in various environments. Some browsers will show a small icon in the corner of the browser window to indicate that an exception or warning has occurred. Others require the console to be open to see any warnings or exceptions.</strong>
+<strong>Warnings and exceptions are presented differently in various environments. 
+    Some browsers will show a small icon in the corner of the browser window to indicate that an exception or warning has occurred. 
+    Others require the console to be open to see any warnings or exceptions.</strong>
 
 <h3>The Importance of Testing and Debugging</h3>
-<p><strong>One should ensure that the code they write fails loudly in development so any errors can be identified and fixed quickly. In production, a programmer should try to make the code fail gracefully (although not completely silently ― we still need to know there’s an error), so the user experience is not affected, if possible. This is achieved by making sure exceptions are caught and dealt with, and code is tested rigorously.</strong></p>
+<p><strong>One should ensure that the code they write fails loudly in development so any errors can be identified and fixed quickly. 
+ In production, a programmer should try to make the code fail gracefully (although not completely silently ― we still need to know there’s an error), 
+    so the user experience is not affected, if possible. This is achieved by making sure exceptions are caught and dealt with, and code is tested rigorously.</strong></p>
 
 <h3>Strict Mode</h3>
 <p>One method used to produce more exceptions and warnings and prohibits the use of some deprecated features is called <strong><em>Strict Mode</em></strong>.<br>
-Not using strict mode is often referred to as 'sloppy mode' as it’s forgiving of sloppy programming practices. Strict mode encourages a better quality of JavaScript to be written that befits a ninja programmer, so its use is recommended.<br>
+Not using strict mode is often referred to as 'sloppy mode' as it’s forgiving of sloppy programming practices. 
+ Strict mode encourages a better quality of JavaScript to be written that befits a ninja programmer, so its use is recommended.<br>
 One needs to simply enter the following string line in a javascript file to enter strict mode:</p>
 <pre> 'use strict';</pre>
-<p>This will be picked up by any JavaScript engine that uses strict mode. If the engine does not support strict mode, this string will simply be ignored.</p>
+<p>This will be picked up by any JavaScript engine that uses strict mode. If the engine does not support strict mode, this string will simply be ignored.<br>
+    By assigning a value to a variable that is undeclared in strict mode, we get an exception, instead of a warning
+</p>
 <pre>
-//By assigning a value to a variable that is undeclared in strict mode, we get an exception, instead of a warning
-
  'use strict';
 
 e = 2.718;
-&lt;&lt; ReferenceError: e is not defined // <--
+&lt;&lt; ReferenceError: e is not defined // <-- exception received
 </pre>
-
+<p>strict mode on a per-function basis by adding the line inside a function. Strict mode will then only be applied to anything inside that function:</p>
 <pre>
-strict mode on a per-function basis by adding the line inside a function. Strict mode will then only be applied to anything inside that function:
-
 function strictly(){
 'use strict';       // <--
 // function code goes here
 </pre>
-
+<p>the recommended way to invoke strict mode is to place all your code into a self-invoking function like so:</p>
 <pre>
-the recommended way to invoke strict mode is to place all your code into a self-invoking function like so:
-
 (function() {
 'use strict';       // <--
 
@@ -100,7 +108,8 @@ the recommended way to invoke strict mode is to place all your code into a self-
 </pre>
 
 <h3>Feature Detection</h3>
-<p>The recommended way to determine browser support for a feature is to use feature detection which is done by using an <strong>if statement</strong> to check whether an object or method exists before trying to actually call the method.</p>
+<p>The recommended way to determine browser support for a feature is to use feature detection which is done by using an <strong>if statement</strong> 
+to check whether an object or method exists before trying to actually call the method.</p>
 <pre>
 In this example below, we want to use the shiny newholoDeckAPI that doesn't actually exist
 
@@ -110,12 +119,15 @@ virtualReality.activate();
 </pre>
 <h3> Debugging in the Browser</h3>
 <p> Debugging is the process of finding and fixing errors within a script. This also allows tracing the code step by step to see what exactly is going on.<br>
-It will be good to create what are known as breakpoints, which halt the progress of the code and allow us to view the value of different variables at that point in the program.</p>
+It will be good to create what are known as breakpoints, which halt the progress of the code 
+and allow us to view the value of different variables at that point in the program.</p>
 <ul>
-<li><strong>The Trusty Alert</strong> which is the most basic form of debugging that allows one to use the <strong>alert()</strong> method to show a dialog at certain points in the code.</li>
+<li><strong>The Trusty Alert</strong> which is the most basic form of debugging that allows one to use the <strong>alert()</strong> 
+method to show a dialog at certain points in the code.</li>
 <li><strong>Using the Console</strong>:<ul>
 <li>The<strong>console.log()</strong> method that can be used to log the value of variables at different stages of the program.</li>
-<li>The <strong>console.trace()</strong>method will log an interactive stack trace in the console. This will show the functions that were called in the lead up to an exception occurring while the code is running</li></li></ul>
+<li>The <strong>console.trace()</strong>method will log an interactive stack trace in the console. 
+This will show the functions that were called in the lead up to an exception occurring while the code is running</li></li></ul>
 <li><strong>Debugging Tools</strong> which works by using the <strong>debugger</strong> command. For example:
 <pre>
 function hello(name) {
