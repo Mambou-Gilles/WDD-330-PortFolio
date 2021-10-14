@@ -168,6 +168,38 @@ const error = new Error('Oops, something went wrong');
 //These error objects can also be used as constructors to create custom error objects:
 const error = new TypeError('You need to use numbers in this function');
 </pre>
+<h3>Exception Handling</h3>
+<p> We can handle exceptions by using the <strong>try</strong>,<strong>catch</strong>, and <strong>finally</strong><br>
+If we suspect a piece of code will result in an exception, we can wrap it in a <strong>try</strong> block. This will run the code inside the block as normal, but if an exception occurs it will pass the error object that is thrown onto a <strong>catch</strong>block</p>
+<pre>
+function imaginarySquareRoot(number) {
+'use strict';
+try {                                  //    <--- we put the try here
+return String(squareRoot(number));
+} catch(error) {                       //    <--- catch error below
+return squareRoot(-number)+'i';
+}
+}
+</pre>
+<p>The code inside the <strong>catch</strong> block will only run if an exception is thrown inside the <strong>try</strong> block The error object is automatically passed as a parameter to the <strong>catch</strong> block. This allows us to query the error name, message and stack properties, and deal with it appropriately. In this case, we actually return a string representation of an imaginary number:</p>
+<pre>
+imaginarySquareRoot(-49) // no error message shown
+&lt;&lt;'7i'
+</pre>
+<p>A <strong>finally</strong> block can be added after a <strong>catch</strong> block. This will always be executed after the <strong>try</strong> or <strong>catch</strong> block, regardless of whether an exception occurred or not. It is useful if you want some code to run in both cases. We can use this to modify the imaginarySquareRoot() function so that it adds "+ or -" to the answer before returning it:</p>
+<pre>
+function imaginarySquareRoot(number) {
+'use strict';
+let answer;
+try {
+answer = String(squareRoot(number));
+} catch(error) {
+answer = squareRoot(-number)+"i";
+} finally {
+return `+ or - ${answer}`;
+}
+}
+</pre>
 
 
 
