@@ -67,9 +67,9 @@ one();
 pi = 3.142;
 &lt;&lt; JavaScript Warning: assignment to an undeclared variable
 </pre>
-<strong>Warnings and exceptions are presented differently in various environments. 
+<p>Warnings and exceptions are presented differently in various environments. 
     Some browsers will show a small icon in the corner of the browser window to indicate that an exception or warning has occurred. 
-    Others require the console to be open to see any warnings or exceptions.</strong>
+    Others require the console to be open to see any warnings or exceptions.</p>
 
 <h3>The Importance of Testing and Debugging</h3>
 <p><strong>One should ensure that the code they write fails loudly in development so any errors can be identified and fixed quickly. 
@@ -141,7 +141,7 @@ say(phrase);
 
 </ul>
 <h3> Error Objects</h3>
-<p>Anerrorobject can be created by the host environment when an exception occurs, or it can be created in the code using a constructor function, like so:</p>
+<p>An <strong>error object</strong> can be created by the host environment when an exception occurs, or it can be created in the code using a constructor function, like so:</p>
 <pre>
 const error = new Error();
 //This constructor function takes a parameter that’s used as the error message:
@@ -151,7 +151,7 @@ const error = new Error('Oops, something went wrong');
 <ul>
 <li><strong>Eval Error</strong> is not used in the current ECMAScript specification and only retained for backward compatibility. It was used to identify errors when using the global eval()function.</li>
 
-<li><strong>RangeError</strong> is thrown when a number is outside an allowable range of values.</li>
+<li><strong>Range Error</strong> is thrown when a number is outside an allowable range of values.</li>
 
 <li><strong>Reference Error</strong> is thrown when a reference is made to an item that doesn’t exist. For example, calling a function that hasn't been defined.</li>
 
@@ -169,7 +169,8 @@ const error = new TypeError('You need to use numbers in this function');
 </pre>
 <h3>Exception Handling</h3>
 <p> We can handle exceptions by using the <strong>try</strong>,<strong>catch</strong>, and <strong>finally</strong><br>
-If we suspect a piece of code will result in an exception, we can wrap it in a <strong>try</strong> block. This will run the code inside the block as normal, but if an exception occurs it will pass the error object that is thrown onto a <strong>catch</strong>block</p>
+If we suspect a piece of code will result in an exception, we can wrap it in a <strong>try</strong> block. 
+This will run the code inside the block as normal, but if an exception occurs it will pass the error object that is thrown onto a <strong>catch</strong> block</p>
 <pre>
 function imaginarySquareRoot(number) {
     'use strict';
@@ -269,7 +270,7 @@ test('factors of 12', () => {
   expect(factorsOf(12)).toEqual([1,2,3,4,6,12]);
 });
 </pre>
-<p>This test says ourfactorsOf()function should return an array containing all the factors of 12 in order, when 12 is provided as an argument. If we run this test, we can see that it fails spectacularly:</p>
+<p>This test says our factorsOf() function should return an array containing all the factors of 12 in order, when 12 is provided as an argument. If we run this test, we can see that it fails spectacularly:</p>
 <pre>
 jest -c {}
 << FAIL ./numberCruncher.test.js
@@ -348,8 +349,9 @@ Ran all test suites.
        <a href="quiz/">Quiz ninja start</a>
 
             <h2 id="question">Question:</h2>
-            </p>
-     
+            </p>In the reading for this week, the book spoke about quite a lot to digest at this point, what is one of the best way to handle errors or debugging that works best 
+            in the field of work for those with much experience?</p>
+            
     </main>
     <footer>
           &copy; <span id="year"></span> <!-- <script>document.write(new Date().getFullyear());</script> -->  | Elie Gilles Mambou | Utah | 
