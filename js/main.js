@@ -3,7 +3,8 @@ const links = [
   { label: 'Week 2', url: 'w02/index.html' },
   { label: 'Week 3', url: 'w03/index.html' },
   { label: 'Week 4', url: 'w04/index.html' },
-  { label: 'Week 5', url: 'w05/index.html' }
+  { label: 'Week 5', url: 'w05/index.html' },
+  { label: 'Week 6 - MidTerm Project', url: 'w06/index.html' }
 ];
 
 const ol = document.getElementById('assignments');   
