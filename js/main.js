@@ -5,7 +5,8 @@ const links = [
   { label: 'Week 4', url: 'w04/index.html' },
   { label: 'Week 5', url: 'w05/index.html' },
   { label: 'Week 6 - MidTerm Project', url: 'w06/index.html'},
-  { label: 'Week 7', url: 'w07/index.html' }
+  { label: 'Week 7', url: 'w07/index.html' },
+  { label: 'Week 8', url: 'w08/index.html' }
 ];
 
 const ol = document.getElementById('assignments');   
