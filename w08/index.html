@@ -17,12 +17,6 @@
     
     <main>
         <h2 id="main-h1">WDD 330: Portfolio Week 8</h2><br>
-        
-        <ul>
-            <li><a href="#note"> My Notes</a></li>
-            <li><a href="#quiz"> Ninja Quiz</a></li>
-            <li><a href="#question">Questions</a></li>
-        </ul>
          
         <h1 id="note">My Notes: Chapter 8 & 12 "HTML5 & CSS3 FOR THE REAL WORLD: 2ND EDITION"</h2>
         
@@ -179,6 +173,717 @@
             <pre>
                 animation-timing-function: linear;
             </pre>
+        
+        <h3>Animation-iteration-count</h3>
+        <p>The animation-iteration-count property lets you define how many times the animation will play through. 
+            The value is generally an integer, but you can also use numbers with decimal points (in which case, the animation will end partway through an iteration), 
+            or the value infinite for endlessly repeating animations. If omitted, it will default to 1, in which case the animation will occur only once</p>
+            <pre>animation-iteration-count: infinite;</pre>
+        
+        <h3>Animation-direction</h3>
+        <p>When the animation iterates, it normally goes from the 0% to the 100% keyframe, jumping back to the 0% when it starts a new iteration 
+            (if the animation-iteration-count is greater than 1). This is the default or normal value for animation-direction. 
+            You can use the animation-direction property to change this behavior.</p>
+            <p>The value of <strong>reverse</strong> will cause the animation to start at the 100% keyframe and work its way to the 0% keyframe for every iteration. 
+                With the <strong>alternate</strong>s value, the initial iteration and odd-numbered iterations after that will go in the normal 0% to 100% direction, 
+                but the second iteration and every even iteration after that will go in the reverse direction of 100% to 0%. Similarly, 
+                the <strong>alternate-reverse animation-direction</strong> value causes the animation to alternate direction at every iteration, but it starts in reverse.</p>
+            <p>An animation of a snowflake falling will always be <strong>normal</strong>, though, you could use the same “falling” animation and employ <strong>alternate</strong> to reverse it, 
+                making it bounce up on every second playthrough. If you were to animate two kids playing on a seesaw, one kid could be tagged <strong>alternate</strong> and the other, 
+                <strong>alternate-reverse</strong>:</p>
+                <pre>animation-direction: alternate;</pre>
+            
+            <h3>Animation-delay</h3>
+            <p>The animation-delay property is used to define how many milliseconds or seconds to wait before the browser begins the animation</p>
+            <pre>animation-delay: 50ms;</pre>
+            <pre>animation-fill-mode</pre>
+            <p>The <strong>animation-fill-mode</strong> property defines what happens before the first animation iteration begins and after the last animation iteration concludes. 
+                By default, an animation has no effect on property values outside of when it’s iterating, 
+                but we can override this default behavior of animation-fill-mode: none</p>
+                <p>The available values are <strong>none</strong>, <strong>forwards</strong>, <strong>backwards</strong>, or <strong>both</strong></p>
+                <p>Table 8.1. Examples of animation-fill-mode in effect</p>
+            <pre>
+                Fill mode	    page load	    1s	    2s	    after 2s
+                    none	    green	    red	    blue	 green
+                    backwards	    red	            red	    blue	 green
+                    forwards	    green	    red	    blue	 blue
+                    both	    red	            red	    blue	 blue
+            </pre>
+            <p>When set to <strong>forwards</strong>, the animation continues to apply the values of the last keyframes after the animation ends. 
+                When set to <strong>backwards</strong>, the animation’s initial keyframes are applied as soon as the animation style is applied to an element. 
+                As you’d expect, a value of <strong>both</strong> applies both the <strong>backwards</strong> and <strong>forwards</strong> effects:</p>
+                <pre>animation-fill-mode: both;</pre>
+                <pre>animation-play-state</pre>
+                <p>The <strong>animation-play-state</strong> property defines whether the animation is <strong>running</strong> or <strong>paused</strong>. 
+                A <strong>paused</strong> animation displays the current state of the animation statically.
+                 When a <strong>paused</strong> animation is resumed, it restarts from the current position. 
+                 This provides a simple way to control CSS animations from within your CSS or with JavaScript.</p>
+
+            <h3>The Shorthand animation Property</h3>
+                <p>The <strong>animation</strong> property takes as its value a space-separated list of values for the longhand 
+                    <strong>animation-name</strong>, <strong>animation-duration</strong>, <strong>animation-timing-function</strong>, <strong>animation-delay</strong>, 
+                    <strong>animation-iteration-count</strong>, <strong>animation-direction</strong>, <strong>animation-fill-mode</strong>, and 
+                    <strong>animation-play-state</strong> properties:</p>
+                <pre>
+                    .verbose {
+                        animation-name: appearDisappear; 
+                        animation-duration: 300ms; 
+                        animation-timing-function: ease-in;
+                        animation-iteration-count: 1;
+                        animation-direction: alternate;
+                        animation-delay: 5s;
+                        animation-fill-mode: backwards;
+                        animation-play-state: running;
+                    }
+                    
+                    /* shorthand */
+                    .concise {
+                        animation: 300ms ease-in alternate 5s backwards appearDisappear;
+                    }
+                </pre>
+
+
+                <h1>Chapter 12: Canvas, SVG, and Drag and Drop</h1>
+
+                    <h2>Creating a canvas Element</h2>
+                    <p>The first step to using canvas is to add a canvas element to the page:</p>
+                    <pre>
+                        <canvas id="myCanvas" class="myCanvas" width="200" height="200">
+                            Sorry! Your browser doesn’t support Canvas.
+                        </canvas>
+                    </pre>
+                    <p>Finally, let’s add a border to our canvas using some CSS to visually distinguish it on the page.
+                         Canvas has no default styling, so it’s difficult to see where it is on the page unless you give it some kind of border:</p>
+                         <pre>
+                            .myCanvas {
+                                border: dotted 2px black;
+                            }</p>
+                         </pre>
+                        <h3>Drawing on the Canvas</h3>
+                            <p>Before we can draw onto a canvas, we need to grab hold of the canvas element on our page:</p>
+                             <pre>var canvas = document.getElementById("myCanvas");</pre>
+                        <h3>Getting the Context</h3>
+                            <p>Once we’ve stored our canvas element in a variable, we then set up the canvas’s context. 
+                                The context is the place where your drawing is rendered. Currently, there’s only wide support for drawing to a two-dimensional context. 
+                                The W3C Canvas spec defines the context in the <strong>CanvasRenderingContext2D</strong> interface. <br>
+                            
+                                We obtain our drawing context by calling the <strong>getContext</strong> method and passing it the string <strong>"2d"</strong>, since we’ll be drawing in two dimensions</p>
+                            <pre>
+                                var canvas = document.getElementById("myCanvas");
+                                var context = canvas.getContext("2d");
+                            </pre>
+                            <p>The object that’s returned by getContext is an instance of CanvasRenderingContext2D</p>
+                        <h3>Filling Our Brush with Color</h3>
+                            <p>On a real-life painting canvas, you must first saturate your brush with paint before you can begin. 
+                                In the HTML5 canvas, you must do the same, and we do so with the strokeStyle or fillStyle properties. 
+                                Both strokeStyle and fillStyle are set on a context object, and both take one of three values: 
+                                a string representing a color, a CanvasGradient object, or a CanvasPattern object.</p>
+                            <pre>
+                                var canvas = document.getElementById("myCanvas");     
+                                var context = canvas.getContext("2d");
+                                context.strokeStyle = "red";
+                            </pre>
+                            <p>To draw a rectangle with a red border and blue fill, we must also define the fill color:</p>
+                            <pre>
+                                var canvas = document.getElementById("myCanvas");     
+                                var context = canvas.getContext("2d");
+                                context.strokeStyle = "red";
+                                context.fillStyle = "blue";
+                            </pre>
+                        <h3>Drawing a Rectangle to the Canvas</h3>
+                            <p>Once we’ve defined the color of the stroke and the fill, we’re ready to start drawing!
+                                But now, we’ll draw a rectangle. We can do this by calling the fillRect and strokeRect methods.
+                                Both of these methods take the X and Y coordinates where you want to begin drawing the fill or the stroke, 
+                                and the width and height of the rectangle
+                            </p>
+                            <pre>
+                                var canvas = document.getElementById("myCanvas"); 
+                                var context = canvas.getContext("2d"); 
+                                context.strokeStyle = "red";
+                                context.fillStyle = "rgba(0, 0, 255, 0.5)";
+                                context.fillRect(10, 10, 100, 100);   
+                                context.strokeRect(10, 10, 100, 100);
+                            </pre>
+
+                        <h3>Variations on fillStyle</h3>
+                            <p>Instead of a color as our fillStyle, we could have used a CanvasGradient or a CanvasPattern object.
+                                Let’s create a pattern on the second canvas element (whose ID is demo2) on the canvas.html page.
+                            </p>
+                            <pre>
+                                function drawPattern() {
+                                    var canvas = document.getElementById("demo2");
+                                    var context = canvas.getContext("2d");
+                                    context.strokeStyle = "red";
+                                
+                                    var img = new Image(); 
+                                    img.src = "../images/bg-bike.png";
+                                }
+                            </pre>
+                            <p>Setting the src attribute will tell the browser to start downloading the image,
+                            if we try to use it immediately to create our gradient, we might run into some problems, 
+                            because the image may still be loading (depending on whether it is in the browser cache). 
+                            To be on the safe side, we’ll use the image’s onload property to create our pattern once the image has been fully loaded by the browser:</p>
+                            <pre>
+                                function drawPattern() {
+                                    var canvas = document.getElementById("demo2");
+                                    var context = canvas.getContext("2d");
+                                    context.strokeStyle = "red";
+                                    
+                                    var img = new Image();
+                                    img.src = "../images/bg-bike.png";
+                                    img.onload = function() { 
+                                    };            
+                                }
+                            </pre>
+                            <p>In our onload event handler, we call createPattern, passing it the Image object and the string repeat so that our image repeats along both the X and Y axes.
+                                 We store the results of createPattern in the variable pattern, and set the fillStyle to that variable:</p>
+                            <pre>
+                                function drawPattern() {
+                                    …
+                                    var img = new Image();
+                                    img.src = "../images/bg-bike.png";
+                                    img.onload = function() {
+                                    var pattern = context.createPattern(img, "repeat"); 
+                                    context.fillStyle = pattern;                        
+                                    context.fillRect(10, 10, 100, 100);                  
+                                    context.strokeRect(10, 10, 100, 100);             
+                                    };
+                                }
+                            </pre>
+                            <p>We can also create a CanvasGradient object to use as our fillStyle. To create a CanvasGradient, 
+                                we call one of two methods: createLinearGradient() or createRadialGradient(); then we add one or more color stops to the gradient.</p>
+                            <pre>function drawGradient() {
+                                var canvas = document.getElementById("demo3");
+                                var context = canvas.getContext("2d");
+                                context.strokeStyle = "red";
+                                var gradient = context.createLinearGradient(0, 0, 0, 200); 
+                            }</pre>
+                            <p>Next, we specify our color stops. The color stop method is simply addColorStop().</p>
+                            <p>The offset is a value between 0 and 1. An offset of 0 is at the start of the gradient, and an offset of 1 is at the end of the gradient. 
+                                The color is a string value that, as with the fillStyle, can be a color name, a hexadecimal color value, an rgb() value, or an rgba() value.</p>
+
+                            <pre>
+                                function drawGradient() {
+                                    …
+                                    var gradient = context.createLinearGradient(0, 0, 0, 200);
+                                    gradient.addColorStop(0, "blue"); 
+                                    gradient.addColorStop(1, "white"); 
+                                    context.fillStyle = gradient; 
+                                    context.fillRect(10, 10, 100, 100); 
+                                    context.strokeRect(10, 10, 100, 100); 
+                                }
+                            </pre>
+
+                        <h3>Drawing Other Shapes by Creating Paths</h3>
+                            <pre>
+                                function drawCircle(canvas) {
+                                    var context = canvas.getContext("2d");
+                                    context.beginPath();
+                                }
+                            </pre>
+                            <p>To create an arc simply used the following code</p>
+                            <pre>function drawCircle(canvas) {
+                                var canvas = document.getElementById("myCanvas");
+                                var context = canvas.getContext("2d");
+                                context.beginPath();
+                                context.arc(50, 50, 30, 0, Math.PI*2, true);
+                            }</pre>
+                            <p>The signature for the arc method is: arc(x, y, radius, startAngle, endAngle, anticlockwise).<br>
+                                x and y represent where on the canvas you want the arc’s path to begin.<br>
+                                startAngle and endAngle represent the start and end angles along the circle’s circumference that you want to draw.<br>
+                                anticlockwise is an optional argument. If you wanted the arc to be drawn counterclockwise instead of clockwise, you would set this value to true</p>
+
+                            <p> The next step is to close the path. As we’ve now finished drawing our circle. We do that with the closePath method:</p>
+                            <pre>
+                                function drawCircle(canvas) {
+                                    var context = canvas.getContext("2d");
+                                    context.beginPath();
+                                    context.arc(100, 100, 50, 0, Math.PI*2, true);
+                                    context.closePath(); 
+                                }
+                            </pre>
+                            <p> To be able to see the drawn circle one should stroke it or fill it by using strokeStyle if we’d like to give it a border, 
+                                and we must set a fillStyle</p>
+                                <pre>
+                                    function drawCircle(canvas) {
+                                        var context = canvas.getContext("2d");
+                                        context.beginPath();
+                                        context.arc(50, 50, 30, 0, Math.PI*2, true);
+                                        context.closePath();
+                                        context.strokeStyle = "red";
+                                        context.fillStyle = "blue";
+                                        context.lineWidth = 3; 
+                                    }
+                                </pre>
+                                <p>Lastly, we fill and stroke the path. Note that this time, the method names are different from those we used with our rectangle. 
+                                    To fill a path you simply call fill, and to stroke it you call stroke:</p>
+                                    <pre>
+                                        function drawCircle(canvas) {
+                                            var context = canvas.getContext("2d");
+                                            context.beginPath();
+                                            context.arc(100, 100, 50, 0, Math.PI*2, true);
+                                            context.closePath();
+                                            context.strokeStyle = "red";
+                                            context.fillStyle = "blue";
+                                            context.lineWidth = 3;
+                                            context.fill(); 
+                                            context.stroke(); 
+                                        }
+                                    </pre>
+                            <h3>Saving Canvas Drawings</h3>
+                                <p>If we create an image programmatically using the Canvas API, but decide we’d like to have a local copy of our drawing, 
+                                    we can use the API’s toDataURL method to save our drawing. toDataURL creates a URL with the image in it, 
+                                    (either a png or jpg, whichever is specified). You can then right-click the image at this URL, and save it as a PNG or JPEG.</p>
+                                <p>In the fifth demo on the canvas.html page, let’s redraw a circle, but add a button called saveButton that allows us to save this circle drawn onto the canvas:</p>
+                                <pre>
+                                    <h2>Demo 5: Saving canvas drawings</h2>
+                                    <pre>
+                                    &lt;canvas width="200" height="200" id="demo5" class="myCanvas"&gt;
+                                        Sorry! Your browser doesn't support Canvas.
+                                    &lt;/canvas&gt;
+                                    &lt;button name="saveButton" id="saveButton"&gt;Save Drawing&lt;/button&gt;
+                                    Below is the drawing canvas
+                                    <canvas width="200" height="200" id="demo5" class="myCanvas">
+                                        Sorry! Your browser doesn't support Canvas.
+                                    </canvas>
+                                    </pre>
+
+                                    <button name="saveButton" id="saveButton">Save Drawing</button>
+                                </pre>
+                                <p>When the button is clicked, we want to open the canvas drawing as an image in a new tab. To do that, we’ll define a new JavaScript function called saveDrawing:</p>
+                                <pre>
+                                    function saveDrawing() {
+                                        var canvas5 = document.getElementById("demo5");
+                                        window.open(canvas5.toDataURL("image/png"));
+                                    }
+                                </pre>
+                                <p>Next, let’s add code to canvas.js to call our saveDrawing function when the Save button is clicked:</p>
+                                <pre>var button = document.getElementById("saveButton");
+                                    button.addEventListener("click", saveDrawing, false);
+                                </pre>
+                            <h3>Drawing an Image to the Canvas</h3>
+                                <p>We can also draw images onto the canvas element. In this example, we’ll be redrawing onto the canvas an image that already exists on the page.</p>
+                                <pre>
+                                    &lt;h2&gt;Demo 6: Drawing an image to the canvas&lt;/h2&gt;
+                                    &lt;canvas width="200" height="200" id="demo6" class="myCanvas"&gt;
+                                        Sorry! Your browser doesn't support Canvas.
+                                    &lt;/canvas&gt;
+
+                                    &lt;img data-src="https://learnable-static.s3.amazonaws.com/premium/reeedr/books/html5-css3-for-the-real-world-2nd-edition/images/html5-logo.png" id="myImageElem"&gt;
+
+                                    below is what you see from this code:
+                                    <h2>Demo 6: Drawing an image to the canvas&lt</h2>
+                                    <canvas width="200" height="200" id="demo6" class="myCanvas"></canvas>
+                                        Sorry! Your browser doesn't support Canvas.
+                                </canvas>
+
+                                    <img data-src="https://learnable-static.s3.amazonaws.com/premium/reeedr/books/html5-css3-for-the-real-world-2nd-edition/images/html5-logo.png" id="myImageElem">
+                                </pre>
+                                <p>Then, in our canvas.js file, we’ll create a new function called drawImageToCanvas in order to redraw the HTML img element onto the canvas.<br>
+
+                                    Before we attempt to redraw an HTML img element on the page, we must ensure that the element has loaded. 
+                                    In order to do that, we’ll add an event listener that will run our code only once the window’s load event has fired</p>
+                                <pre>window.addEventListener("load", drawImageToCanvas, false);</pre>
+                                <p>Next, after grabbing the canvas element and setting up the canvas’s context, we can grab an image from our page via document.getElementById:</p>
+                                <pre>
+                                    function drawImageToCanvas() {
+                                        var canvas = document.getElementById("demo6");
+                                        var context = canvas.getContext("2d");
+                                        var image = document.getElementById("myImageElem");
+                                    }
+                                </pre>
+                                <p>We’ll use the same CSS that we used before to make the area of the canvas element visible:</p>
+                                <pre>
+                                    .myCanvas {
+                                    border: dotted 2px black;
+                                    margin: 0 20px;
+                                }
+                                </pre>
+                                <p>We can use canvas’s drawImage method to redraw the image from our page into the canvas:</p>
+                                <pre>
+                                    function drawImageToCanvas() {
+                                        var canvas = document.getElementById("demo6");
+                                        var context = canvas.getContext("2d");
+                                        var image = document.getElementById("myImageElem");
+                                        context.drawImage(image, 0, 0); 
+                                    }
+                                </pre>
+                            <h3>Manipulating Images</h3>
+                                <p>we can use the getImageData method from the Canvas API to manipulate the pixels of that image.<br>
+                                    getImageData will return an ImageData object, which contains three properties: width, height, and data<br>
+                                    data contains information about the pixels in the ImageData object in the form of an array. 
+                                    Each pixel on the canvas will have four values in the data array, which correspond to that pixel’s R, G, B, and A values<br>
+                                    The getImageData method allows us to examine a small section of a canvas, so let’s use this feature to become more 
+                                    familiar with the data array. getImageData takes four parameters, corresponding to the four corners of a rectangular 
+                                    piece of the canvas we’d like to inspect</p>
+                                <pre>
+                                    var canvas = document.getElementById("myCanvas");
+                                    var context = canvas.getContext("2d");
+                                    var image = document.getElementById("myImageElem");
+                                    // draw the image at x=0 and y=0 on the canvas
+                                    context.drawImage(image, 68, 68);
+                                    var imageData = context.getImageData(0, 0, 1, 1);
+                                    var pixelData = imageData.data;
+                                    console.log(pixelData.length);
+                                </pre>
+                            <h3>Converting an Image from Color to Black and White</h3>
+                                <p>Let’s look at how we’d go about using getImageData to convert a full color image into black and white on a canvas. 
+                                We’ll create a new function in the canvas.js file called manipulateImage to do so.<br>
+                                First, we’ll call getImageData(0, 0, 200, 200) to retrieve the entire canvas. 
+                                Then, we’ll grab the red, green, and blue values of each pixel, which appear in the array in that order:</p>
+                                <pre>
+                                    function manipulateImage() {
+                                        var canvas = document.getElementById("demo7");
+                                        var context = canvas.getContext("2d");
+                                        var image = document.getElementById("secondImage");
+                                        context.drawImage(image, 68, 68);
+                                    
+                                        var imageData = context.getImageData(0, 0, 200, 200);
+                                        
+                                        var red, green, blue, greyscale;
+                                        
+                                        for (var i = 0; i < imageData.data.length; i += 4) {
+                                        red = imageData.data[i];
+                                        green = imageData.data[i + 1];
+                                        blue = imageData.data[i + 2];
+                                        }
+                                    }
+                                </pre>
+                                <p>Next, we must determine the grayscale value for the current pixel</p>
+                                <pre>
+                                    function manipulateImage() {
+                                        …
+                                            for (var i = 0; i < imageData.data.length; i += 4) { 
+                                            red = imageData.data[i];
+                                            green = imageData.data[i + 1];
+                                            blue = imageData.data[i + 2];
+                                                
+                                            grayscale = red * 0.3 + green * 0.59 + blue * 0.11; 
+                                        }
+                                </pre>
+                                <p>Now that we have the proper grayscale value, we’re going to store it back into the red, green, and blue values in the data array:</p>
+                                <pre>
+                                    function manipulateImage() {
+
+                                        …
+                                            for (var i = 0; i < imageData.data.length; i += 4) {
+                                            var red = imageData.data[i];
+                                            var green = imageData.data[i + 1];
+                                            var blue = imageData.data[i + 2];
+                                        
+                                            var grayscale = red * 0.3 + green * 0.59 + blue * 0.11;
+                                        
+                                            imageData.data[i] = grayscale; 
+                                            imageData.data[i + 1] = grayscale;  
+                                            imageData.data[i + 2] = grayscale;  
+                                            }
+                                        }
+                                </pre>
+
+                                <p>The final step? Putting the image data we’ve modified back into the canvas via a method called putImageData. 
+                                    This method does exactly what you’d expect: it takes an image's data and writes it onto the canvas. Here’s the method in action:</p>
+                                    <pre>function manipulateImage() {
+                                        var canvas = document.getElementById("demo7");
+                                        var context = canvas.getContext("2d");
+                                        var image = document.getElementById("secondImage");
+                                        context.drawImage(image, 60, 60);
+                                    
+                                        var imageData = context.getImageData(0, 0, 200, 200);
+                                        
+                                        for (var i = 0; i < imageData.data.length; i += 4) {
+                                        var red = imageData.data[i];
+                                        var green = imageData.data[i + 1];
+                                        var blue = imageData.data[i + 2];
+                                            
+                                        var grayscale = red * 0.3 + green * 0.59 + blue * 0.11;
+                                            
+                                        imageData.data[i] = grayscale;
+                                        imageData.data[i + 1] = grayscale;
+                                        imageData.data[i + 2] = grayscale;
+                                        } 
+                                        context.putImageData(imageData, 0, 0);
+                                    }
+                                    </pre>
+                                <h3>Manipulating Video with Canvas</h3>
+                                    <p>The file begins, as always, by setting up the canvas and the context:</p>
+                                    <pre>
+                                        function makeVideoOldTimey() {
+                                            var video = document.getElementById("video");
+                                            var canvas = document.getElementById("canvasOverlay");
+                                            var context = canvas.getContext("2d");
+                                        }
+                                    </pre>
+                                    <p>Next, we’ll add a new event listener to react to the play event firing on the video element.</p>
+                                    <p>We want to call a custom function called draw when the video begins playing (we’ll review what happens in this custom function right after this code block).
+                                         To do so, we’ll add an event listener to our video element that responds to the play event:</p>
+                                         <pre>
+                                            function makeVideoOldTimey() {
+                                                var video = document.getElementById("video");
+                                                var canvas = document.getElementById("canvasOverlay");
+                                                var context = canvas.getContext("2d");
+                                            
+                                                video.addEventListener("play", function() { 
+                                                draw(video,context,canvas);               
+                                                }, false);  
+                                            
+                                            }
+                                         </pre>
+                                         <p>The draw function, which is a custom function that we’ll define, will be called when the play event fires.
+                                              It will be passed the video, context, and canvas objects.</p>
+                                            <p>Since we want to pass several parameters to the draw function— video, context, and canvas —we must call it from inside an anonymous function.<br>
+
+                                                Let’s look at the custom draw function:</p>
+                                        <pre>function draw(video, context, canvas) {
+                                            if (video.paused || video.ended) return false;
+                                            
+                                            drawOneFrame(video, context, canvas);
+                                        }
+                                    </pre>
+                                    <p>Before doing anything else, we check to see if the video is paused or has ended, in which case we’ll just cut the function short by returning false. 
+                                        Otherwise, we continue on to the drawOneFrame function. The drawOneFrame function is nearly identical to the code we had earlier for converting an 
+                                        image from color to black and white, except that we’re drawing the video element onto the canvas instead of a static image:</p>
+                                    <pre>function drawOneFrame(video, context, canvas){
+                                        // draw the video onto the canvas
+                                        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                                    
+                                        var imageData = context.getImageData(0, 0, canvas.width, 
+                                    ↵canvas.height);
+                                        var pixelData = imageData.data; 
+                                        // Loop through the red, green and blue pixels, 
+                                        // turning them grayscale
+                                        
+                                        var red, green, blue, greyscale;  
+                                        for (var i = 0; i < pixelData.length; i += 4) {
+                                        red = pixelData[i];
+                                        green = pixelData[i + 1];
+                                        blue = pixelData[i + 2];
+                                        //we'll ignore the alpha value, which is in position i+3
+                                            
+                                        grayscale = red * 0.3 + green * 0.59 + blue * 0.11;
+                                            
+                                        pixelData[i] = grayscale;
+                                        pixelData[i + 1] = grayscale;
+                                        pixelData[i + 2] = grayscale;
+                                        }
+                                                
+                                        context.putImageData(imageData, 0, 0); 
+                                    }
+                                </pre>
+                                <p>After we’ve drawn one frame, what’s the next step? We need to draw another frame! 
+                                    The setTimeout method allows us to keep calling the draw function over and over again, without pause. </p>
+                                    <pre>function draw(video, context, canvas) { 
+                                        if (video.paused || video.ended) return false;
+                                        
+                                        drawOneFrame(video, context, canvas);
+                                        
+                                        // Start over! 
+                                        setTimeout(function(){ draw(video, context, canvas); }, 0); 
+                                    }
+                                </pre>
+                            <h3>Displaying Text on the Canvas</h3>
+                            <p>to view The HTML5 Herald from a file on a computer, we’d encounter security errors in Firefox and Chrome when 
+                                trying to manipulate an entire video, as we did with a simple image. </p>
+                                <p>The first step is to add an error handling try / catch block to catch the error:</p>
+                                <pre>function drawOneFrame(video, context, canvas){
+                                    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                                
+                                    try {
+                                    var imageData = context.getImageData(0, 0, canvas.width, 
+                                ↵canvas.height);
+                                    var pixelData = imageData.data;
+                                    for (var i = 0; i < pixelData.length; i += 4) {
+                                        var red = pixelData[i];
+                                        var green = pixelData[i + 1];
+                                        var blue = pixelData[i + 2];
+                                        var grayscale = red * 0.3 + green * 0.59 + blue * 0.11;
+                                        pixelData[i] = grayscale;
+                                        pixelData[i + 1] = grayscale;
+                                        pixelData[i + 2] = grayscale;
+                                    }
+                                    
+                                    imageData.data = pixelData;
+                                    context.putImageData(imageData, 0, 0);
+                                    } catch (err) {
+                                    // error handling code will go here
+                                    }
+                                }
+                            </pre>
+                            <p>f an error occurs when trying to call getImageData, it would be nice to let the user know what is going wrong. 
+                                We’ll do just that, using the fillText method of the Canvas API.</p>
+                            <pre>
+                                function drawOneFrame(video, context, canvas){
+                                    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                                
+                                    try {
+                                    …
+                                    } catch (err) {
+                                    canvas.width = canvas.width; 
+                                    }
+                                }
+                            </pre>
+                            <p>Next, let’s change the background color from black to transparent, since the canvas element is positioned on top of the video:</p>
+                            <pre>
+                                function drawOneFrame(video, context, canvas){
+                                    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                                
+                                    try {
+                                    … 
+                                    } catch (err) {
+                                    // clear the canvas 
+                                    context.clearRect(0,0,canvas.width,canvas.height);
+                                    canvas.style.backgroundColor = "transparent"; 
+                                    context.fillStyle = "white"; 
+                                    }
+                                }
+                            </pre>
+                            <p>Before we can draw any text to the now transparent canvas, we first must set up the style of our text—similar to what we did with paths earlier. 
+                                We do that with the fillStyle and textAlign methods:<br>
+                                videoToBW.js (excerpt)</p>
+                            <pre>function drawOneFrame(video, context, canvas){
+                                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                            
+                                try {(review code style)
+                                …
+                                } catch (err) {
+                                // clear the canvas 
+                                context.clearRect(0,0,canvas.width,canvas.height);
+                                canvas.style.backgroundColor = "transparent";               
+                                context.fillStyle = "white"; 
+                                context.textAlign = "left"; 
+                                }
+                            }
+                        </pre>
+                        <p>We can also set a specific font and font style we’d like to use</p>
+                        <pre>function drawOneFrame(video, context, canvas){
+                            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                        
+                            try {
+                            …
+                            } catch (err) {
+                            // clear the canvas 
+                            context.clearRect(0,0,canvas.width,canvas.height);
+                            canvas.style.backgroundColor = "transparent";
+                            context.fillStyle = "white";
+                            context.textAlign = "left";
+                        
+                            context.font = "18px LeagueGothic, Tahoma, Geneva, sans-serif"; 
+                            }
+                        }
+                        </pre>
+                        <pre>
+                            function drawOneFrame(video, context, canvas){
+                                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                            
+                                try {
+                                …
+                                } catch (err) {
+                                // clear the canvas 
+                                context.clearRect(0,0,canvas.width,canvas.height);
+                                canvas.style.backgroundColor = "transparent";
+                                context.fillStyle = "white";
+                                context.textAlign = "left";
+                                context.font = "18px LeagueGothic, Tahoma, Geneva, sans-serif";
+                                context.fillText("There was an error rendering ", 10, 20);  
+                                context.fillText("the video to the canvas.", 10, 40);
+                                context.fillText("Perhaps you are viewing this page from", 10, 
+                            ↵70);
+                                context.fillText("a file on your computer?", 10, 90);
+                                context.fillText("Try viewing this page online instead.", 10, 
+                            ↵130); 
+                            
+                                return false; 
+                                }
+                            }
+                        </pre>
+                        <p>As a last step, we return false. This lets us check in the draw function whether an exception was thrown. 
+                            If it was, we want to stop calling drawOneFrame for each video frame, so we exit the draw function:</p>
+                            <pre>
+                                function draw(video, context, canvas) {
+                                    if (video.paused || video.ended) return false;
+                                    
+                                    drawOneFrame(video, context, canvas);
+                                        
+                                    // Start over!
+                                    setTimeout(function(){ draw(video, context, canvas); }, 0);
+                                }
+                            </pre>
+                    <h2>SVG</h2>
+                    <p>SVG stands for Scalable Vector Graphics, a specific file format that allows you to describe vector graphics using XML. 
+                        A major selling point of vector graphics in general is that, unlike bitmap images (such as GIF, JPEG, PNG, and TIFF), 
+                        vector images preserve their quality even as you blow them up or shrink them down. <br>
+                        SVG can be used to do many of the same tasks we can do with canvas, including drawing paths, shapes, text, gradients, and patterns</p>
+                    <h3>Drawing in SVG</h3>
+                    <p>Drawing a circle in SVG is arguably easier than drawing a circle with canvas. Here’s how we do it:</p>
+                    <pre>&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"&gt;
+                        &lt;circle cx="50" cy="50" r="25" fill="red"/&gt;
+                    &lt;/svg&gt;
+                     
+                    here is the image from the code above
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                        <circle cx="50" cy="50" r="25" fill="red"/>
+                    </svg>
+                </pre>
+                <p>The <strong>viewBox</strong> attribute defines the starting location, width, and height of the SVG image.<br>
+
+                    The <strong>circle</strong> element defines a circle, with cx and cy the X and Y coordinates of the center of the circle. 
+                    The radius is represented by r, while fill defines the fill style.</p>
+                    <p>We can also draw rectangles in SVG, and add a stroke to them as we did with canvas.
+                    Utilize the <desc> tag, which allows us to provide a description for the image we’re going to draw:</p>
+                    <pre>
+                        &lt;svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 400 400"&gt;
+                            &lt;desc&gt;Drawing a rectangle&lt;/desc&gt;
+                        &lt;/svg&gt;
+
+                        The image of the code below:
+                        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 400 400">
+                            <desc>Drawing a rectangle</desc>
+                        </svg>
+                    </pre>
+                    <p>Next, we populate the <rect> tag with a number of attributes that describe the rectangle. 
+                        This includes the X and Y coordinate where the rectangle should be drawn, the width and height of the rectangle, 
+                        the fill, the stroke, and the width of the stroke:</p>
+                        <pre>
+                            &lt;svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 400 400"&gt;
+                            &lt;desc&gt;Drawing a rectangle&lt;/desc&gt;
+                                &lt;rect x="10" y="10" width="100" height="100"  
+                                    fill="blue" stroke="red" stroke-width="3"  /&gt;  
+                            &lt;/svg&gt;
+                            image of code above:
+                            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 400 400">
+                                <desc>Drawing a rectangle</desc>
+                                    <rect x="10" y="10" width="100" height="100"  
+                                        fill="blue" stroke="red" stroke-width="3"  /> </svg>
+                    </pre>
+                    <p>Below is a code to create a complex shape which looks a little scary</p>
+                    <pre>
+                        &lt;svg xmlns="http://www.w3.org/2000/svg"    
+                            width="122.88545" height="114.88568"&gt;
+                        &lt;g
+                            inkscape:label="Calque 1"
+                            inkscape:groupmode="layer"
+                            id="layer1"
+                            transform="translate(-242.42282,-449.03699)"&gt;
+                            &lt;g
+                            transform="matrix(0.72428496,0,0,0.72428496,119.87078,183.8127)"
+                            id="g7153"&gt;
+                            &lt;path
+                                style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width
+                        ↵:2.761343;stroke-linecap:round;stroke-linejoin:round;stroke-miterl
+                        ↵imit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+                                d="m 249.28667,389.00422 -9.7738,30.15957 -31.91999,7.5995 c -
+                        ↵2.74681,1.46591 -5.51239,2.92436 -1.69852,6.99979 l 30.15935,12.57
+                        ↵796 -11.80876,32.07362 c -1.56949,4.62283 -0.21957,6.36158 4.24212
+                        ↵,3.35419 l 26.59198,-24.55691 30.9576,17.75909 c 3.83318,2.65893 6
+                        ↵.12086,0.80055 5.36349,-3.57143 l -12.10702,-34.11764 22.72561,-13
+                        ↵.7066 c 2.32805,-1.03398 5.8555,-6.16054 -0.46651,-6.46042 l -33.5
+                        ↵0135,-0.66887 -11.69597,-27.26175 c -2.04282,-3.50583 -4.06602,-7.
+                        ↵22748 -7.06823,-0.1801 z"
+                                id="path7155"
+                                inkscape:connector-curvature="0"
+                                sodipodi:nodetypes="cccccccccccccccc" /&gt;
+                    
+                        …
+                    </pre>
 
             
     </main>
