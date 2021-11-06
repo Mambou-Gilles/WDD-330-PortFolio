@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wdd 330: Week 05 | Portfolio Home Page</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+  
+    <header>
+        <h1 id="header-title">Elie Gilles Mambou</h1>
+    </header>
+    
+    <main>
+        <h2 id="main-h1">WDD 330: Portfolio Week 8</h2><br>
+        
+        <ul>
+            <li><a href="#note"> My Notes</a></li>
+            <li><a href="#quiz"> Ninja Quiz</a></li>
+            <li><a href="#question">Questions</a></li>
+        </ul>
+         
+        <h1 id="note">My Notes: Chapter 8 & 12 "HTML5 & CSS3 FOR THE REAL WORLD: 2ND EDITION"</h2>
+        
+        <h1>Chapter 8: <strong>CSS3 Transforms and Transitions</strong></h1>
+        <h2>Transforms</h2>
+        <h2>Translate</h2>
+
+            <p>Translation functions allow you to move elements left, right, up, or down. 
+            These functions are similar to the behavior of position: relative; 
+            when declaring top and left, moving elements up and down or left and right 
+            along the x and y axes</p>
+            <pre>transform: translate(45px, -45px);</pre>
+            <p>To move an element vertically or horizontally, you can use the translatex or translatey</p>
+    
+        <h2>Scaling</h2>
+                <p>The scale(x,y) function scales an element by the defined factors horizontally 
+                    then vertically. If only one value is provided, it will be used for both the x and y values, 
+                    growing or shrinking your element or pseudo-element while maintaining the original aspect ratio</p>
+                <pre>transform: scale(1.5, 0.25);</pre>
+                <p>As with translate, you can also use the scaleX(x) or scaleY(y) functions. 
+                    These functions will scale only the horizontal dimensions or only the vertical dimensions respectively.</p>
+                    <p>A scaled element will grow outwards from or shrink inwards towards its center</p>
+
+        <h2>Rotation</h2>
+                <p>The rotate() function rotates an element around the point of origin by a specified angle value</p>
+                <pre>transform: rotate(10deg)</pre>
+
+        <h2>Skew</h2>
+                <p>The skew(x,y) function specifies a skew along the x and y axes. As you’d expect,
+                     the x specifies the skew on the x axis, and the y specifies the skew on the y axis. 
+                     If the second parameter is omitted, the skew will only occur on the x axis</p>
+                <pre>transform: skew(15deg, 4deg);</pre>
+                <p><strong>As with translate and scale, there are axis-specific versions of the skew transform: skewX() and skewY()</strong></p>
+        <h2>Note:</h2>
+                <p> All of these properties can be used together:</p>
+                <pre>transform: rotate(10deg) translateX(40px) scale(1.5);</pre>
+        <h2>Transitions</h2>
+                <p>Transitions allow the values of CSS properties to change over time, essentially providing simple animations</p>
+                <p>Here are the steps to create a simple transition using only CSS:</p>
+
+                <ul>
+
+                    <li>Declare the original state of the element in the default style declaration.</li>
+
+                   <li> Declare the final state of your transitioned element; for example, a :hover state.</li>
+
+                    <li>Include the transition functions in your default style declaration using the transition properties, including: 
+                    transition-property, transition-duration, transition-timing-function, and transition-delay. 
+                    We’ll look at each of these and how they work shortly.</li>
+
+                </ul>
+
+                <pre>transition-property: transform, color;</pre>
+            <h3>The transition-duration Property</h3>
+            <p>The transition-duration property sets how long the transition will take: the duration of time it takes to go from the default state to the transitioned state.
+                 You can specify this either in seconds (s) or milliseconds (ms).</p>
+                 <pre>transition-duration: 0.2s; // that is 200 milliseconds (200ms</pre>
+            <h3>The transition-timing-function Property</h3>
+            <p>The transition-timing-function lets you control the pace of the transition in even more granular detail. 
+                Do you want your animation to start off slow and become faster, start off fast and end slower, advance at an even keel, or some other variation?</p>
+                <p>The most common timing functions include the key terms:</p>
+                <ul>
+                    <li>ease: is the default, it has a slow start, then it speeds up, and ends slowly </li>
+                    <li>linear: creates a transition that animates at a constant speed</li>
+                    <li>ease-in: creates a transition that is slow to start but gains speed, then stops abruptly.</li>
+                    <li>ease-out: opposite of ease-in, ease-out, starts at full speed, then slows progressively as it reaches the conclusion of the transition</li>
+                    <li>ease-in-out: is similar to ease, but accelerates more sharply at the beginning.</li>
+                </ul> 
+                <p>The best way to familiarize yourself with them is to play around and try them all</p>
+                <pre>transition-timing-function: ease-out;</pre>
+
+            <h3>The transition Shorthand Property</h3>
+            <p>With four transition properties and a vendor prefix, you could wind up with eight lines of CSS for a single transition</p>
+            <pre>transition-property: transform; 
+                transition-duration: 0.2s;  
+                transition-timing-function: ease-out;
+                transition-delay: 50ms;</pre>
+                <p>Here is the shorthand of the above</p>
+                <pre>transition: transform 0.2s ease-out 50ms;</pre>
+            <h3>Multiple Transitions</h3>
+            <p>The transition properties allow for multiple transitions in one call.Instead of defining this way:</p>
+            <pre>transition-property: transform, color; 
+                transition-duration: 0.2s, 0.1s;  
+                transition-timing-function: ease-out, linear;
+                transition-delay: 50ms;</pre>
+                <p>you could do this instead:</p>
+                <pre>transition: transform 0.2s ease-out 50ms, color 0.1s linear 50ms;</pre>
+
+            <p>If you want to change both properties at the same rate and delay, 
+                you can include both property names or—since you are transitioning all the properties listed in the hover state anyway—you can employ the all keyword.<br><br>
+
+                When using the all keyword, all the properties transition at the same rate, speed, and delay:</p>
+                <pre>transition: all 0.2s ease-out 50ms; </pre>
+
+        <h2>Animations</h2>
+        <p>CSS animations, unlike transitions, allow you to control each step of an animation via keyframes.</p>
+        <p>A keyframe is a snapshot that defines a starting or end point of any smooth transition. 
+            With CSS transitions, we’re essentially limited to defining a first and a last keyframe. 
+            CSS animations allow us to add any number of keyframes in between, to guide our animation in more complex ways.</p>
+
+        <p>To create an animation, use the <strong>@keyframes</strong> rule for IE10+ and FF16+. Include <strong>@-webkit-keyframes</strong> for all WebKit implementations followed by a name of your choosing, which will serve as the identifier for the animation. Then, you can specify your keyframes</p>
+            <p>For an animation called myAnimation, the @keyframes rule would look like this:</p>
+            <pre>
+                @-webkit-keyframes myAnimation { 
+                    /* put animation keyframes here */
+                }
+                @keyframes myAnimation { 
+                    /* put animation keyframes here */
+                }
+            </pre>
+
+            <p>Do not quote the animation name.<br>
+
+                Each keyframe looks like its own nested CSS declaration block. Instead of a traditional selector, 
+                though, you use a percentage value, or a comma-separated list of percentage values. <br>
+                There are two keyterms― from and to ―which evaluate to 0% and 100% respectively. These values specify how far along the animation each keyframe is located.</p>
+
+
+            <pre>
+                @keyframes moveRight { 
+                    from {
+                    transform: translateX(-50%);
+                    }
+                    to {
+                    transform: translateX(50%);
+                    }
+                }
+                
+                @keyframes appearDisappear { 
+                    0%, 100% {
+                    opacity: 0;
+                    }
+                    20%, 80% {
+                    opacity: 1;
+                    }
+                }
+                
+                @keyframes bgMove {
+                    100% {
+                    background-position: 120% 0;
+                    }
+                }
+            </pre>
+
+            <h3>Animation Properties</h3>
+            <pre>animation-name: appearDisappear;
+                animation-duration: 300ms;//animation-duration property defines the length of time (in seconds or milliseconds) an animation takes to complete one iteration (all the way through, from 0% to 100%)
+            </pre>
+        <h3>animation-timing-function</h3>
+        <p>Like the transition-timing-function property, the animation-timing-function determines how the animation will progress over its duration</p>
+        <p>The options are the same as for transition-timing-function: ease, linear, ease-in, ease-out, ease-in-out, 
+            a developer-defined cubic-bezier() function, step-start, step-end, or a developer-defined number of steps with the steps(number, direction) function:</p>
+            <pre>
+                animation-timing-function: linear;
+            </pre>
+
+            
+    </main>
+    <footer>
+          &copy; <span id="year"></span> <!-- <script>document.write(new Date().getFullyear());</script> -->  | Elie Gilles Mambou | Utah | 
+         <a href="https://www.byui.edu/online" id="footer-link">BYU Online Learning</a>
+         <p id="update">       </p>
+    </footer>
+    <script src="scripts/main.js"></script>
+    
+</body>
+
+</html>
+© 2021 GitHub, Inc.
+Terms
+Privacy
