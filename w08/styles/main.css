@@ -49,9 +49,10 @@ main {
 pre {
   border-radius: 2px;
   border: 1px  black;
-  /*margin-right: 1200px;*/
   background-color: lightGray;
     font-size: 15px;
+    line-height: 25px;
+    padding: 150px;
 }
 
 #update {
