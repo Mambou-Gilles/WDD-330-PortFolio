@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>wdd 330: Week 05 | Portfolio Home Page</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+  
+    <header>
+        <h1 id="header-title">Elie Gilles Mambou</h1>
+    </header>
+    
+    <main>
+        <h2 id="main-h1">WDD 330: Portfolio Week 8</h2><br>
+         
+        <h2 id="note">My Notes: Chapter 9 & 14 "JAVASCRIPT: NOVICE TO NINJA, 2ND EDITION"</h2>
+      
+        <h2>The Window Object</h2>
+
+<p>The window object represents a window in the browser. An object of the window is created automatically by the browser.</p>
+<p>The <strong>window</strong> is the object of the browser, it is not the object of javascript. The javascript objects are string, array, date, etc.</p>
+<h3 class="h2">Methods of window object</h3>
+<p>The important methods of window object are as follows:</p>
+<table class="alt">
+<tr><th>Method</th><th>Description</th></tr>
+<tr><td>alert()</td><td>displays the alert box containing message with ok button.</td></tr>
+<tr><td>confirm()</td><td>displays the confirm dialog box containing message with ok and cancel button.</td></tr>
+<tr><td>prompt()</td><td>displays a dialog box to get input from the user.</td></tr>
+<tr><td>open()</td><td>opens the new window.</td></tr>
+<tr><td>close()</td><td>closes the current window.</td></tr>
+<tr><td>setTimeout()</td><td>performs action after specified time like calling function, evaluating expressions etc.</td></tr>
+</table>
+<hr />
+<h4 class="h4">Example of alert() in javascript</h4>
+<p>It displays alert dialog box. It has message and ok button.</p>
+<div class="codeblock"><textarea name="code"  class="xml">
+&lt;script type="text/javascript"&gt;
+function msg(){
+alert("Hello Alert Box");
+}
+&lt;/script&gt;
+&lt;input type="button" value="click" onclick="msg()"/&gt;
+</textarea></div>
+<hr />
+<h4 class="h4">Output of the above example</h4>
+<div class="codeblock3">
+<script type="text/javascript">
+function msg(){
+alert("Hello Alert Box");
+}
+</script>
+<input type="button" value="click" onclick="msg()" />
+</div>
+<hr />
+
+<h4 class="h4">Example of confirm() in javascript</h4>
+<p>It displays the confirm dialog box. It has message with ok and cancel buttons.</p>
+<div class="codeblock"><textarea name="code" class="xml">
+&lt;script type="text/javascript"&gt;
+function msg(){
+var v= confirm("Are u sure?");
+if(v==true){
+alert("ok");
+}
+else{
+alert("cancel");
+}
+
+}
+&lt;/script&gt;
+
+&lt;input type="button" value="delete record" onclick="msg()"/&gt;
+
+</textarea></div>
+<hr />
+<h4 class="h4">Output of the above example</h4>
+<div class="codeblock3">
+<script type="text/javascript">
+function msg2(){
+var v= confirm("Are u sure?");
+if(v==true){
+alert("ok");
+}
+else{
+alert("cancel");
+}
+}
+</script>
+<input type="button" value="delete record" onclick="msg2()" />
+</div>
+<hr />
+<h4 class="h4">Example of prompt() in javascript</h4>
+<p>It displays prompt dialog box for input. It has message and textfield.</p>
+<div class="codeblock"><textarea name="code" class="xml">
+&lt;script type="text/javascript"&gt;
+function msg(){
+var v= prompt("Who are you?");
+alert("I am "+v);
+
+}
+&lt;/script&gt;
+
+&lt;input type="button" value="click" onclick="msg()"/&gt;
+
+</textarea></div>
+<hr />
+<h4 class="h4">Output of the above example</h4>
+<div class="codeblock3">
+<script type="text/javascript">
+function msg3(){
+var v= prompt("Who are you?");
+alert("I am "+v);
+}
+</script>
+<input type="button" value="click" onclick="msg3()" />
+</div>
+<hr />
+<h4 class="h4">Example of open() in javascript</h4>
+<p>It displays the content in a new window.</p>
+<div class="codeblock"><textarea name="code" class="xml">
+&lt;script type="text/javascript"&gt;
+function msg(){
+open("http://www.javatpoint.com");
+}
+&lt;/script&gt;
+&lt;input type="button" value="javatpoint" onclick="msg()"/&gt;
+
+</textarea></div>
+<hr />
+<h4 class="h4">Output of the above example</h4>
+<div class="codeblock3">
+<script type="text/javascript">
+function msg4(){
+open("http://www.javatpoint.com");
+}
+</script>
+<input type="button" value="javatpoint" onclick="msg4()" />
+</div>
+<hr />
+<h4 class="h4">Example of setTimeout() in javascript</h4>
+<p>It performs its task after the given milliseconds.</p>
+<div class="codeblock"><textarea name="code" class="xml">
+&lt;script type="text/javascript"&gt;
+function msg(){
+setTimeout(
+function(){
+alert("Welcome to Javatpoint after 2 seconds")
+},2000);
+
+}
+&lt;/script&gt;
+
+&lt;input type="button" value="click" onclick="msg()"/&gt;
+
+</textarea></div>
+<hr />
+<h4 class="h4">Output of the above example</h4>
+<div class="codeblock3">
+<script type="text/javascript">
+function msg5(){
+setTimeout(
+function(){
+alert("Welcome to Javatpoint after 2 seconds")
+},2000);
+
+}
+</script>
+<input type="button" value="click" onclick="msg5()" />
+</div>
+
+<h3>Animation</h3>
+<p>The <strong>setTimeOut()</strong> and <strong>setInterval()</strong> methods can be used to animate elements on a web page</p>
+
+
+<h2>HTML5 APIs</h2>
+<h3>HTML5 Web Storage</h3>
+<p>The Web Storage API provides a key-value store on the client’s computer that is similar to using cookies but has fewer restrictions, more storage capacity, and is generally easier to use</p>
+
+<h3>Geolocation </h3>
+<p>The Geolocation API is used to obtain the geographical position of the device?<br>
+For example:</p>
+<pre>
+navigator.geolocation.getCurrentPosition(youAreHere);
+</pre>
+
+<h3>Web Workers</h3>
+<p>Web workers allow processes to be run in the background, adding support for concurrency in JavaScript</p>
+<p>To get started, use the Worker() constructor function to create a new worker:</p>
+<pre>const worker = new Worker('task.js');</pre>
+
+<h3>Multimedia</h3>
+<p>HTML5 introduced the <strong>&lt;audio&gt;</strong> and <strong>&lt;video&gt;</strong> tags used to insert audio and video clips into a web page. It also introduced a Media API for controlling the playback of the clips using JavaScript.</p>
+<p>An audio clip can be inserted into a page with the <strong>&lt;audio&gt;</strong> tag, using the src attribute to point to the audio file:</p>
+<pre>
+&lt;audio src='/song.mp3' controls&gt;
+Your browser does not support the audio element.
+&lt;/audio&gt;
+</pre>
+<p>A video clip can be inserted with the <strong>&lt;video&gt;</strong> tag, using the src attribute to point to the movie file:</p>
+<pre>
+&lt;video src='http://movie.mp4' controls&gt;
+Your browser does not support the video element.
+&lt;/video&gt;
+</pre>
+<p>The <strong>controls</strong> attribute can be added (without any value) and will display the browser’s native controls,</p>
+
+<h3>Drawing with Canvas</h3>
+<p>To add a <strong>canvas</strong> element to a page, the <strong>&lt;canvas&gt; </strong>tag is used specifying a <strong>height</strong> and <strong>width</strong>.</p>
+<pre>
+&lt;canvas id='canvas' width='400' height='400'&gt;Sorry, but your browser does not support the canvas element&lt;/canvas&gt;
+</pre>
+   
+ </main>
+    <footer>
+          &copy; <span id="year"></span> <!-- <script>document.write(new Date().getFullyear());</script> -->  | Elie Gilles Mambou | Utah | 
+         <a href="https://www.byui.edu/online" id="footer-link">BYU Online Learning</a>
+         <p id="update">       </p>
+    </footer>
+    <script src="scripts/main.js"></script>
+    
+</body>
+
+</html>
