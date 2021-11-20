@@ -54,7 +54,8 @@ pre {
     padding: 10px;
 }
 #quake {
-  style: none;
+  display: none;
+  line-height: 5px;
   background-color: Aqua;
   border: 1px Black;
   border-radius: 3px;
