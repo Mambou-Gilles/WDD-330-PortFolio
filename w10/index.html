@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>wdd 330: Week 05 | Portfolio Home Page</title>
     <link rel="stylesheet" href="styles/main.css">
+    
 </head>
 
 <body>
@@ -16,13 +17,204 @@
     </header>
     
     <main>
-        <h2 id="main-h1">WDD 330: Portfolio Week 8</h2><br>
+        <h2 id="main-h1">WDD 330: Portfolio Week 10</h2><br>
          
-        <h2 id="note">My Notes: Chapter 9 & 14 "JAVASCRIPT: NOVICE TO NINJA, 2ND EDITION"</h2>
+        <h2 id="note">Week 10 reading: Form_validation & Using_Fetch</h2>
+        <h3> Client Side Form Validation</h3>
+        <p> A client-side form validation ensures that all required form controls are filled out</p>
+        <p>There are two types of form validator:</p>
+        <ul>
+            <li>Client-side – done in browser</li>
+            <li>Server-side – done in server</li>
+        </ul>
+        
+        <p>One of reason one should insist on validating a form is to:<b>protect user data</b> and <b>protect ourselves</b></p>
+        <h3>Different types of client-side validation</h3>
+        <ul>
+            <li>Built-in form validation: uses HTML5 form validation features</li>
+            <li>JavaScript: uses JavaScript and its validation is completely customizable</li>
+        </ul>
+        
+        <h3>Built-in form validation that does not rely on JavaScript</h3>
+        <ul>
+            <li>Required</li>
+            <li>minLength and maxLength</li>
+            <li>min and max</li>
+            <li>type</li>
+            <li>pattern</li>
+        </ul>
+        
+        <p>If the data entered in a form field follows all of the rules specified by the above attributes, it is considered valid. If not, it is considered invalid.
+            When an element is valid, the following things are true:</p>
+        <ul>
+            <li>The element matches the :valid CSS pseudo-class, which lets you apply a specific style to valid elements.</li>
+            <li>The element matches the :invalid CSS pseudo-class, and sometimes other UI pseudo-classes (e.g., :out-of-range) 
+                depending on the error, which lets you apply a specific style to invalid elements</li>
+
+        </ul>
+        <h3>Validating form using JavaScript </h3>
+        <p>Constraint validation API consists of set of methods and properties available on the following form element DOM interfaces:</p>
+        <ul>
+            <li>HTMLButtonElement (represents a <button> element)</li>
+            <li>HTMLFieldSetElement (represents a <fieldset> element)</li>
+            <li>HTMLInputElement (represents an <input> element)</li>
+            <li>HTMLOutputElement (represents an <output> element)</li>
+            <li>HTMLSelectElement (represents a <select> element)</li>
+            <li>HTMLTextAreaElement (represents a <textarea> element)</li>
+        </ul>
+        <h2> Using Fetch</h2>
+        <p>The Fetch API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses</p>
+        <p>A basic fetch request is really simple to set up. Have a look at the following code:</p>
+        <pre>
+            fetch('http://example.com/movies.json')
+              .then(response => response.json())
+              .then(data => console.log(data));
+        </pre>
+        <p>
+           The fetch() method can optionally accept a second parameter, an init object that allows you to control a number of different settings</p>
+        <h3>Sending a request with credentials included</h3>
+        <pre>
+            fetch('https://example.com', {
+              credentials: 'include'
+            });
+        </pre>
+        <p> Use <b>credentials: 'same-origin'</b> if you only want to send credentials if the request URL is on the same origin as the calling script.<br>
+            At a same time use <b>credentials: 'omit'</b> to instead ensure browsers don’t include credentials in the request</p>
+        <h3>Uploading JSON data</h3>
+        <p>Use fetch() to POST JSON-encoded data.</p>
+        <pre>
+            const data = { username: 'example' };
+
+            fetch('https://example.com/profile', {
+              method: 'POST', // or 'PUT'
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Success:', data);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        </pre>
+        <h3>Uploading a file</h3>
+            <p>Files can be uploaded using an HTML <input type="file" /> input element, FormData() and fetch().</p>
+        <pre>
+            const formData = new FormData();
+            const fileField = document.querySelector('input[type="file"]');
+
+            formData.append('username', 'abc123');
+            formData.append('avatar', fileField.files[0]);
+
+            fetch('https://example.com/profile/avatar', {
+              method: 'PUT',
+              body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+              console.log('Success:', result);
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        </pre>
+        <h3>Uploading multiple files</h3>
+            <p>Files can be uploaded using an HTML <input type="file" multiple /> input element, FormData() and fetch().</p>
+        <pre>
+                const formData = new FormData();
+                const photos = document.querySelector('input[type="file"][multiple]');
+
+                formData.append('title', 'My Vegas Vacation');
+                for (let i = 0; i < photos.files.length; i++) {
+                  formData.append(`photos_${i}`, photos.files[i]);
+                }
+
+                fetch('https://example.com/posts', {
+                  method: 'POST',
+                  body: formData,
+                })
+                .then(response => response.json())
+                .then(result => {
+                  console.log('Success:', result);
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                });
+        </pre>
+        <h3>Processing a text file line by line</h3>
+        <pre>
+             async function* makeTextFileLineIterator(fileURL) {
+                 const utf8Decoder = new TextDecoder('utf-8');
+                 const response = await fetch(fileURL);
+                 const reader = response.body.getReader();
+                 let { value: chunk, done: readerDone } = await reader.read();
+                      chunk = chunk ? utf8Decoder.decode(chunk) : '';
+
+                      const re = /\n|\r|\r\n/gm;
+                      let startIndex = 0;
+                      let result;
+
+                      for (;;) {
+                        let result = re.exec(chunk);
+                        if (!result) {
+                          if (readerDone) {
+                            break;
+                          }
+                          let remainder = chunk.substr(startIndex);
+                          ({ value: chunk, done: readerDone } = await reader.read());
+                          chunk = remainder + (chunk ? utf8Decoder.decode(chunk) : '');
+                          startIndex = re.lastIndex = 0;
+                          continue;
+                        }
+                        yield chunk.substring(startIndex, result.index);
+                        startIndex = re.lastIndex;
+                      }
+                      if (startIndex < chunk.length) {
+                        // last line didn't end in a newline char
+                        yield chunk.substr(startIndex);
+                      }
+                    }
+
+                    async function run() {
+                      for await (let line of makeTextFileLineIterator(urlOfFile)) {
+                        processLine(line);
+                      }
+                    }
+
+                    run();     
+        </pre>
+       <h3>Checking that the fetch was successful</h3>
+           <pre>
+                     fetch('flowers.jpg')
+                      .then(response => {
+                        if (!response.ok) {
+                          throw new Error('Network response was not OK');
+                        }
+                        return response.blob();
+                      })
+                      .then(myBlob => {
+                        myImage.src = URL.createObjectURL(myBlob);
+                      })
+                      .catch(error => {
+                        console.error('There has been a problem with your fetch operation:', error);
+                      });
+  
+              </pre>
+                          
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">Click this link for full documentation</a></p>     
+
+        <h2>Some example of Validation Form</h2>
+        <h3>Built in Form Validation</h3>
+        <p> Click the following link to check our <a href="validation.html">HTML's built-in validation features</a> </p>
+        <h3>JavaScript Validation</h3>
+        <p>Click the link <a href="javat_validation.html">JavaScript validation features</a></p>
       
-      <h2>TEAM ACTIVITY: FETCH EXAMPLE</h2>
-      <button type="button">Click Here</button>
-      <ul id="quake"></ul>
+          <h2>TEAM ACTIVITY: FETCH EXAMPLE of Quakes</h2>
+          <button type="button">Click Here for quakes information</button>
+          <ul id="quake"></ul>
    
  </main>
     <footer>
