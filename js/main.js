@@ -8,7 +8,8 @@ const links = [
   { label: 'Week 7', url: 'w07/index.html' },
   { label: 'Week 8', url: 'w08/index.html' },
   { label: 'Week 9', url: 'w09/index.html' },
-  { label: 'Week 10', url: 'w10/index.html' }
+  { label: 'Week 10', url: 'w10/index.html' },
+  { label: 'Movie App Final Project', url: 'w13-Final-Project/index.html' }
 ];
 
 const ol = document.getElementById('assignments');   
